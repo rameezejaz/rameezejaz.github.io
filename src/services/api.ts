@@ -12,7 +12,7 @@ interface GenerateNamesResponse {
 
 export const generateNames = async (message: string): Promise<string[]> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/generate/names`, {
+    const response = await fetch(`${API_BASE_URL}/generate-names`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
