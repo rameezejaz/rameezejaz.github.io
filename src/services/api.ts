@@ -1,4 +1,4 @@
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'http://18.204.48.100:8080';
 
 interface GenerateNamesRequest {
   message: string;
