@@ -1,0 +1,288 @@
+.sidebar {
+  width: 280px;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 70px;
+  bottom: 0;
+  z-index: 900;
+  transition: transform var(--transition-normal), background var(--transition-normal);
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
+.sidebarHeader {
+  padding: 20px;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--card-bg);
+  transition: background var(--transition-normal), border-color var(--transition-normal);
+}
+
+.newChatButton {
+  width: 100%;
+  background: linear-gradient(135deg, #125ef2 0%, #0d4bc4 100%);
+  color: white;
+  border: none;
+  padding: 14px 18px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.newChatButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.newChatButton:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.newChatButton:hover {
+  transform: translateY(-2px);
+}
+
+.newChatButton:active {
+  transform: translateY(0);
+}
+
+.buttonIcon {
+  font-size: 22px;
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+.chatList {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.chatList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatList::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+
+.chatItem {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  animation: slideInLeft 0.3s ease-out;
+}
+
+.chatItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: transparent;
+  transition: all var(--transition-normal);
+}
+
+.chatItem:hover {
+  background: var(--card-hover-bg);
+  border-color: rgba(18, 94, 242, 0.5);
+  transform: translateX(4px);
+}
+
+.chatItem:hover::before {
+  background: linear-gradient(180deg, #125ef2 0%, #0d4bc4 100%);
+}
+
+.chatItem.active {
+  background: rgba(18, 94, 242, 0.15);
+  border-color: rgba(18, 94, 242, 0.5);
+}
+
+.chatItem.active::before {
+  background: linear-gradient(180deg, #125ef2 0%, #0d4bc4 100%);
+  width: 4px;
+}
+
+.chatInfo {
+  flex: 1;
+  min-width: 0;
+  padding-left: 8px;
+}
+
+.chatTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 6px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0.3px;
+}
+
+.chatDate {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 0;
+  opacity: 0.8;
+}
+
+.deleteButton {
+  background: rgba(245, 87, 108, 0.1);
+  border: 1px solid rgba(245, 87, 108, 0.2);
+  color: #f5576c;
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: all var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.chatItem:hover .deleteButton {
+  opacity: 1;
+}
+
+.deleteButton:hover {
+  background: rgba(245, 87, 108, 0.2);
+  border-color: rgba(245, 87, 108, 0.5);
+  transform: scale(1.1);
+}
+
+.deleteButton:active {
+  transform: scale(0.9);
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.emptyIcon {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.4;
+  animation: float 3s ease-in-out infinite;
+}
+
+.emptyText {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 280px;
+    top: 60px;
+  }
+}
+
+/* Overlay for mobile ONLY */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 899;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.overlay.visible {
+  opacity: 1;
+}
+
+/* Only show overlay on mobile/tablet */
+@media (max-width: 992px) {
+  .overlay.visible {
+    display: block;
+  }
+}
+
+/* On desktop, never show overlay */
+@media (min-width: 993px) {
+  .overlay {
+    display: none !important;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}

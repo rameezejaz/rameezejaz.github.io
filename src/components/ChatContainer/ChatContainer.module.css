@@ -1,0 +1,354 @@
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+  padding-top: 70px;
+}
+
+.messagesArea {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 24px 20px 0 20px;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+.messagesArea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messagesArea::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 10px;
+}
+
+.messagesArea::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 10px;
+}
+
+.messagesArea::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4080f5 0%, #125ef2 100%);
+}
+
+.messagesWrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.welcomeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  text-align: center;
+  padding: 60px 20px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.welcomeIcon {
+  font-size: 100px;
+  margin-bottom: 32px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.welcomeTitle {
+  font-size: 42px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #125ef2 0%, #4080f5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.welcomeSubtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 48px;
+  max-width: 600px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+.examplesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  max-width: 900px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.exampleCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.exampleCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #125ef2 0%, #4080f5 100%);
+  transform: scaleX(0);
+  transition: transform var(--transition-normal);
+}
+
+.exampleCard:hover::before {
+  transform: scaleX(1);
+}
+
+.exampleCard:hover {
+  background: var(--card-hover-bg);
+  border-color: rgba(18, 94, 242, 0.5);
+  transform: translateY(-6px);
+}
+
+.exampleIcon {
+  font-size: 40px;
+  margin-bottom: 16px;
+  display: block;
+  transition: transform var(--transition-normal);
+}
+
+.exampleCard:hover .exampleIcon {
+  transform: scale(1.2) rotate(5deg);
+}
+
+.exampleTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.exampleDescription {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 22px;
+  background: rgba(18, 94, 242, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(18, 94, 242, 0.3);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.loadingSpinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(18, 94, 242, 0.3);
+  border-top-color: #125ef2;
+  border-right-color: #0d4bc4;
+  border-radius: 50%;
+  animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.loadingText {
+  font-size: 15px;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 500;
+}
+
+.loadingDots {
+  display: inline-block;
+  animation: dots 1.5s steps(4, end) infinite;
+}
+
+.errorContainer {
+  background: rgba(245, 87, 108, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 87, 108, 0.3);
+  border-radius: 16px;
+  padding: 18px 22px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.errorIcon {
+  font-size: 28px;
+  flex-shrink: 0;
+}
+
+.errorText {
+  color: #ff9aaa;
+  font-size: 14px;
+  margin: 0;
+  font-weight: 500;
+}
+
+.scrollButton {
+  position: fixed;
+  bottom: 120px;
+  right: 30px;
+  background: linear-gradient(135deg, #125ef2 0%, #0d4bc4 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  z-index: 100;
+  font-size: 24px;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.scrollButton:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.scrollButton:active {
+  transform: translateY(-2px) scale(1);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes dots {
+  0%, 20% {
+    content: '.';
+  }
+  40% {
+    content: '..';
+  }
+  60%, 100% {
+    content: '...';
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .chatContainer {
+    padding-top: 60px;
+  }
+
+  .messagesArea {
+    padding: 16px 12px 0 12px;
+  }
+
+  .welcomeContainer {
+    min-height: 60vh;
+    padding: 40px 20px;
+  }
+
+  .welcomeTitle {
+    font-size: 32px;
+  }
+
+  .welcomeSubtitle {
+    font-size: 16px;
+  }
+
+  .welcomeIcon {
+    font-size: 80px;
+  }
+
+  .examplesContainer {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .exampleCard {
+    padding: 20px;
+  }
+
+  .scrollButton {
+    bottom: 100px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .welcomeTitle {
+    font-size: 28px;
+  }
+
+  .welcomeSubtitle {
+    font-size: 14px;
+  }
+
+  .messagesArea {
+    padding: 12px 10px 0 10px;
+  }
+
+  .exampleCard {
+    padding: 18px;
+  }
+
+  .exampleIcon {
+    font-size: 36px;
+  }
+
+  .exampleTitle {
+    font-size: 16px;
+  }
+}

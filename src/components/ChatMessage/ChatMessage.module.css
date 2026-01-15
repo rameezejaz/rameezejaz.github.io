@@ -1,0 +1,423 @@
+.messageWrapper {
+  display: flex;
+  margin-bottom: 24px;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.messageWrapper.user {
+  justify-content: flex-end;
+}
+
+.messageWrapper.assistant {
+  justify-content: flex-start;
+}
+
+.messageContainer {
+  max-width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.messageHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.avatar.user {
+  background: linear-gradient(135deg, #125ef2 0%, #0d4bc4 100%);
+  color: white;
+}
+
+.avatar.assistant {
+  background: linear-gradient(135deg, #4080f5 0%, #125ef2 100%);
+  color: white;
+}
+
+.avatar::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  padding: 2px;
+  background: linear-gradient(135deg, #125ef2 0%, #0d4bc4 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+}
+
+.senderName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+
+.messageBubble {
+  padding: 16px 20px;
+  border-radius: 18px;
+  word-wrap: break-word;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.messageBubble::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(18, 94, 242, 0.5), rgba(13, 75, 196, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.messageBubble:hover::before {
+  opacity: 1;
+}
+
+.messageBubble.user {
+  background: var(--message-user-bg);
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.messageBubble.assistant {
+  background: var(--message-assistant-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--message-assistant-border);
+  border-bottom-left-radius: 6px;
+}
+
+.messageBubble:hover {
+  transform: translateY(-2px);
+}
+
+.messageText {
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+  white-space: pre-wrap;
+  font-weight: 400;
+}
+
+.namesSection {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.messageBubble.assistant .namesSection {
+  border-top: 1px solid var(--border-color);
+}
+
+.namesHeader {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 14px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+}
+
+.messageBubble.user .namesHeader {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.messageBubble.assistant .namesHeader {
+  color: var(--text-primary);
+}
+
+.namesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nameItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.nameItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+  transform: scaleY(0);
+  transition: transform var(--transition-normal);
+}
+
+.nameItem:hover::before {
+  transform: scaleY(1);
+}
+
+.messageBubble.user .nameItem {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.messageBubble.assistant .nameItem {
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.nameItem:hover {
+  transform: translateX(6px);
+}
+
+.messageBubble.user .nameItem:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.messageBubble.assistant .nameItem:hover {
+  background: var(--card-hover-bg);
+  border-color: rgba(18, 94, 242, 0.3);
+}
+
+.checkIcon {
+  font-size: 18px;
+  flex-shrink: 0;
+  animation: scaleIn 0.3s ease-out;
+}
+
+.nameText {
+  font-weight: 600;
+  flex: 1;
+  letter-spacing: 0.2px;
+}
+
+.copyButton {
+  background: rgba(18, 94, 242, 0.2);
+  border: 1px solid rgba(18, 94, 242, 0.3);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  flex-shrink: 0;
+}
+
+.nameItem:hover .copyButton {
+  opacity: 1;
+}
+
+.copyButton:hover {
+  background: rgba(18, 94, 242, 0.3);
+  border-color: rgba(18, 94, 242, 0.5);
+  transform: scale(1.05);
+}
+
+.copyButton:active {
+  transform: scale(0.95);
+}
+
+.copyButton.copied {
+  background: rgba(0, 242, 254, 0.2);
+  border-color: rgba(0, 242, 254, 0.3);
+  color: #00f2fe;
+  opacity: 1;
+}
+
+.messageBubble.user .copyButton {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.messageBubble.user .copyButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.messageBubble.user .copyButton.copied {
+  background: rgba(0, 242, 254, 0.3);
+  border-color: rgba(0, 242, 254, 0.5);
+  color: #00f2fe;
+}
+
+.suggestMoreButton {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+}
+
+.suggestMoreButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.suggestMoreButton:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.messageBubble.user .suggestMoreButton {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.messageBubble.assistant .suggestMoreButton {
+  background: linear-gradient(135deg, #125ef2 0%, #0d4bc4 100%);
+  color: white;
+}
+
+.suggestMoreButton:hover {
+  transform: translateY(-3px);
+}
+
+.messageBubble.user .suggestMoreButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.suggestMoreButton:active {
+  transform: translateY(-1px);
+}
+
+.buttonContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timestamp {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+.messageWrapper.user .timestamp {
+  text-align: right;
+}
+
+.messageWrapper.assistant .timestamp {
+  text-align: left;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .messageContainer {
+    max-width: 85%;
+  }
+
+  .messageBubble {
+    padding: 14px 18px;
+  }
+
+  .messageText {
+    font-size: 14px;
+  }
+
+  .nameItem {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .suggestMoreButton {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+
+  .copyButton {
+    opacity: 1;
+    padding: 5px 10px;
+    font-size: 11px;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
