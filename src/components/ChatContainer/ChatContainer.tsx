@@ -195,35 +195,6 @@ const ChatContainer: React.FC<ChatContainerProps> = ({ chat, onUpdateChat }) => 
     }
   };
 
-  const handleExampleClick = (example: string) => {
-    if (!loading) {
-      handleSendMessage(example);
-    }
-  };
-
-  const examples = [
-    {
-      icon: '☕',
-      title: 'Coffee Shop',
-      description: 'I want to start a specialty coffee shop',
-    },
-    {
-      icon: '💻',
-      title: 'Tech Startup',
-      description: 'I need a name for my SaaS company',
-    },
-    {
-      icon: '👗',
-      title: 'Fashion Brand',
-      description: 'Looking for fashion boutique names',
-    },
-    {
-      icon: '🍕',
-      title: 'Restaurant',
-      description: 'I want to open an Italian restaurant',
-    },
-  ];
-
   return (
     <div className={styles.chatContainer}>
       <div className={styles.messagesArea} ref={messagesAreaRef}>
